@@ -34,9 +34,9 @@ bot = Client(
     bot_token=BOT_TOKEN
 )
 
-photo = "https://i.postimg.cc/dVY9nL63/IMG-20250426-130510-655.jpg"
-cpphoto = "https://i.postimg.cc/dVY9nL63/IMG-20250426-130510-655.jpg"
-appxzip = "https://i.postimg.cc/dVY9nL63/IMG-20250426-130510-655.jpg"
+photo = "https://te.legra.ph/file/159d3f9e2d57dd02db970.jpg"
+cpphoto = "https://te.legra.ph/file/159d3f9e2d57dd02db970.jpg"
+appxzip = "https://te.legra.ph/file/29f784eb49d230ab62e9e.mp4"
 my_name = "Annex"
 CHANNEL_ID = "-1002420268227"##change it with your channel 🆔 
 

@@ -12,7 +12,7 @@ import cloudscraper
 import m3u8
 import core as helper
 from utils import progress_bar
-from vars import API_ID, API_HASH, BOT_TOKEN, OWNER
+from vars import API_ID, API_HASH, BOT_TOKEN
 from aiohttp import ClientSession
 from pyromod import listen
 from subprocess import getstatusoutput
@@ -32,60 +32,10 @@ bot = Client(
     api_id=API_ID,
     api_hash=API_HASH,
     bot_token=BOT_TOKEN,
-    OWNER_ID=OWNER
 )
-
-AUTH_USER = os.environ.get('AUTH_USERS', '5810663795').split(',')
-AUTH_USERS = [int(user_id) for user_id in AUTH_USER]
-if int(OWNER) not in AUTH_USERS:
-    AUTH_USERS.append(int(OWNER))
-    
 photo = "https://te.legra.ph/file/159d3f9e2d57dd02db970.jpg"
 cpphoto = "https://te.legra.ph/file/159d3f9e2d57dd02db970.jpg"
 appxzip = "https://te.legra.ph/file/29f784eb49d230ab62e9e.mp4"
-
-@bot.on_message(filters.command("addauth") & filters.private)
-async def add_auth_user(client: Client, message: Message):
-    if message.chat.id != OWNER:
-        return await message.reply_text("You are not authorized to use this command.")
-    
-    try:
-        new_user_id = int(message.command[1])
-        if new_user_id in AUTH_USERS:
-            await message.reply_text("User ID is already authorized.")
-        else:
-            AUTH_USERS.append(new_user_id)
-            # Update the environment variable (if needed)
-            os.environ['AUTH_USERS'] = ','.join(map(str, AUTH_USERS))
-            await message.reply_text(f"User ID {new_user_id} added to authorized users.")
-    except (IndexError, ValueError):
-        await message.reply_text("Please provide a valid user ID.")
-        
-@bot.on_message(filters.command("remauth") & filters.private)
-async def remove_auth_user(client: Client, message: Message):
-    if message.chat.id != OWNER:
-        return await message.reply_text("You are not authorized to use this command.")
-    
-    try:
-        user_id_to_remove = int(message.command[1])
-        if user_id_to_remove not in AUTH_USERS:
-            await message.reply_text("User ID is not in the authorized users list.")
-        else:
-            AUTH_USERS.remove(user_id_to_remove)
-            # Update the environment variable (if needed)
-            os.environ['AUTH_USERS'] = ','.join(map(str, AUTH_USERS))
-            await message.reply_text(f"User ID {user_id_to_remove} removed from authorized users.")
-    except (IndexError, ValueError):
-        await message.reply_text("Please provide a valid user ID.")
-
-@bot.on_message(filters.command("users") & filters.private)
-async def list_auth_users(client: Client, message: Message):
-    if message.chat.id != OWNER:
-        return await message.reply_text("You are not authorized to use this command.")
-    
-    user_list = '\n'.join(map(str, AUTH_USERS))
-    await message.reply_text(f"<blockquote>Authorized Users:</blockquote>\n{user_list}")
-    
 my_name = "Annex"
 CHANNEL_ID = "-1002420268227"##change it with your channel 🆔 
 

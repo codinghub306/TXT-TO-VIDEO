@@ -32,7 +32,7 @@ bot = Client(
     api_id=API_ID,
     api_hash=API_HASH,
     bot_token=BOT_TOKEN,
-    OWNER=OWNER
+    OWNER_ID=OWNER
 )
 
 AUTH_USER = os.environ.get('AUTH_USERS', '5810663795').split(',')
